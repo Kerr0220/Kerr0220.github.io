@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+#left{
+    background-color: aquamarine;
+}
+#main{
+    background-color: beige;
+}
+#right{
+    background-color: cornflowerblue;
+}
