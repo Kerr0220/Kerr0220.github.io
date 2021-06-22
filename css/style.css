@@ -7,6 +7,9 @@ body {
     background-position: center;
     font-family: sans-serif;
 }
+html{
+	font-size:20px;
+}
 #title{
     color: #fff;
 }
@@ -16,7 +19,7 @@ body {
 
 #moreBtn{
     position: absolute;
-    right: 10px;
+    right: 0.625rem;
     left: auto;
 }
 
@@ -25,11 +28,11 @@ ul{
 }
 
 .pageHead{
-    margin-top: 10px;
+    margin-top: 0.625rem;
 }
 
 .taskListDiv{
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .taskListDiv p{
@@ -38,10 +41,10 @@ ul{
 
 .taskDiv{
     width: 100%;
-    height: 70px;
+    height: 4.375rem;
     background-color: #fff;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-radius: 0.625rem;
+    margin-top: 0.625rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -50,43 +53,60 @@ ul{
 .taskDiv:hover{
     background-color: #d3d3d3;
 }
-
+.filterDiv{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: flex-start;
+}
+.filterBtn{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.filtTitle{
+    color: #ffffff;
+}
 .star{
     align-self: center;
-    margin-right: 10px;
+    margin-right: 0.625rem;
+}
+
+.sun{
+    align-self: center;
+    margin-right: 0.625rem;
 }
 
 .taskTextDiv{
     width: 100%;
-    height: 50px;
+    height: 3.125rem;
     vertical-align: center;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 0.625rem;
+    margin-left: 1.25rem;
 }
 
 .check{
-    margin-top: 28px;
+    margin-top: 1.75rem;
     vertical-align: center;
-    margin-left: 10px;
+    margin-left: 0.625rem;
 }
 
 .checkTitle{
-    height: 30px;
-    line-height: 30px;
+    height: 1.875rem;
+    line-height: 1.875rem;
     vertical-align: center;
-    font-size: 23px;
+    font-size: 1.2rem;
 }
 
 .checkDdl{
-    height: 20px;
-    line-height: 20px;
+    height: 1.25rem;
+    line-height: 1.25rem;
     vertical-align: center;
     color: #9b9b9b;
-    margin-left: 10px;
+    margin-left: 0.625rem;
 }
 #completeBtn{
-    height: 30px;
-    width: 200px;
+    height: 1.875rem;
+    width: 12.5rem;
     display: flex;
     align-items: flex-start;
 }
@@ -98,60 +118,60 @@ ul{
 #completeBtn label{
     color: #fff;
     background-color: rgba(0,0,0,0.5);
-    height: 30px;
-    line-height: 30px;
+    height: 1.875rem;
+    line-height: 1.875rem;
     vertical-align: center;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     justify-content: center;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 0.3125rem;
+    margin-right: 0.3125rem;
 }
 
 #finishedListDiv{
-    margin-bottom: 60px;
+    margin-bottom: 3.75rem;
 }
 
 #iptNewTaskDiv{
     width: 100%;
-    left: 0px;
+    left: 0rem;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     position: fixed;
-    bottom: 0px;
+    bottom: 0rem;
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 1.25rem;
 }
 #newTaskTitle{
-    width: 250px;
-    height: 50px;
+    width: 9.375rem;
+    height: 3.125rem;
     align-self: center;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     border: none;
     outline: none;
-    margin-left: 10px;
-    font-size: 20px;
+    margin-left: 0.625rem;
+    font-size: 1.25rem;
 }
 #inputBtn{
-    margin-top: 10px;
-    margin-right: 10px;
-    height: 30px;
-    line-height: 30px;
+    margin-top: 0.625rem;
+    margin-right: 0.625rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
     vertical-align: center;
     background-color: cornflowerblue;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     text-align: center;
     color: #fff;
-    width: 100px;
+    width: 6.25rem;
 }
 #inputBtn:active{
     background-color: #5282cb;
     color: #fff;
 }
 #newTaskCheck{
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 #newTaskDate{
-    margin-top: 15px;
-    margin-right: 10px;
+    margin-top: 0.9375rem;
+    margin-right: 0.625rem;
 }

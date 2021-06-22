@@ -1,0 +1,86 @@
+body {
+    background-image: url(../img/bgImg1.jpeg);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+
+html{
+	font-size:20px;
+}
+
+.headDiv{
+    margin-top: 1.625rem;
+    width: 100%;
+}
+
+.taskDiv{
+    width: 100%;
+    height: 50%;
+}
+
+#titleInput{
+    width: 90%;
+    margin-left: 5%;
+    height: 5rem;
+    border-radius: 20px;
+    outline: none;
+    font-size: 2.8rem;
+    margin-bottom: 10%;
+    margin-top: 15%;
+    line-height: 5rem;
+    font-weight: bold;
+}
+
+
+#dateInput{
+    width: 90%;
+    margin-left: 5%;
+    font-size: 2.8rem;
+    border-radius: 20px;
+    outline: none;
+    align-self: center;
+    margin-bottom: 10%;
+}
+
+#contentInput{
+    width: 90%;
+    margin-left: 5%;
+    height: 30rem;
+    border-radius: 20px;
+    font-size: 2.8rem;
+    outline: none;
+}
+
+.btnDiv{
+    position: absolute;
+    bottom: 3%;
+    right: 5%;
+    background-color: red;
+    width: 90%;
+    height: 8%;
+    border-radius: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn:active{
+    background-color: rgb(184, 2, 2);
+}
+
+.deleteBtn{
+    align-self: center;
+}
+
+#saveDiv{
+    background-color: royalblue;
+    bottom: 13%;
+}
+
+#saveDiv:active{
+    background-color: rgb(50, 81, 173);
+}
+
+.saveBtn{
+    align-self: center;
+}

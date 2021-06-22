@@ -25,7 +25,6 @@ function clearList(listName){
     // normal -> normal tasks
     // today -> today's tasks
     // important -> important tasks
-
 if(localStorage.taskList==null){
     console.log('normal blank');
     taskList=[new Task('','')];
@@ -40,8 +39,12 @@ if(localStorage.taskList==null){
     for(i=1;i<taskList.length;i++){
         task = taskList[i];
         star = 'star';
+        today = 'sun';
         if(task['star']==true){
             star = 'stared';
+        }
+        if(task['today']==true){
+            today = 'suned';
         }
         if(task['isFinished']==false){
             uncplTaskNum++;
@@ -51,7 +54,8 @@ if(localStorage.taskList==null){
             "                <label class=\"checkTitle\">" + task['title'] + "</label><br/>\n" +
             "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
             "            </div>\n" +
-            "            <img src=\"img\/"+star+".png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
+            "            <img src=\"img/"+today+".png\" class=\"sun\" height=\"30\" width=\"30\" onclick=\"addToday(this.parentNode)\"/>"+
+            "            <img src=\"img/"+star+".png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
             "        </div>";
         }else{
             document.getElementById("finishedListDiv").innerHTML += "<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
@@ -60,6 +64,7 @@ if(localStorage.taskList==null){
             "                <label class=\"checkTitle\" style=\"text-decoration: line-through; color: #9d9d9d\">" + task['title'] + "</label><br/>\n" +
             "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
             "            </div>\n" +
+            "            <img src=\"img/"+today+".png\" class=\"sun\" height=\"30\" width=\"30\" onclick=\"addToday(this.parentNode)\"/>"+
             "            <img src=\"img\/"+star+".png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
             "        </div>";
         }
@@ -69,9 +74,8 @@ if(localStorage.taskList==null){
 
 
 function openTask(taskDiv) {
-    // window.location.href = "editor.html";
-    // checkBox = taskDiv.firstElementChild;
-    // console.log(checkBox.checked);
+    localStorage.setItem("currentTaskID",JSON.stringify(taskDiv.parentNode.id));
+    window.location.href = "editor.html";
 }
 
 function changeTaskStatement(taskDiv) {
@@ -143,7 +147,8 @@ function addTask(newTaskDiv) {
         "                <label class=\"checkTitle\">" + title + "</label><br/>\n" +
         "                <label class=\"checkDdl\">ddl: " + date + "</label>\n" +
         "            </div>\n" +
-        "            <img src=\"img\/star.png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
+        "            <img src=\"img/sun.png\" class=\"sun\" height=\"30\" width=\"30\" onclick=\"addToday(this.parentNode)\"/>"+
+        "            <img src=\"img/star.png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
         "        </div>";
     
     // clear the input box's value
@@ -170,11 +175,130 @@ function addImportant(taskNode){
     star = taskList[taskList.findIndex(item=>item['id']==id)]['star']
     if(star==false){
         taskList[taskList.findIndex(item=>item['id']==id)]['star']=true;
-        taskNode.childNodes[5].src='img/stared.png';
+        taskNode.childNodes[7].src='img/stared.png';
     }else{
         taskList[taskList.findIndex(item=>item['id']==id)]['star']=false;
-        taskNode.childNodes[5].src='img/star.png';
+        taskNode.childNodes[7].src='img/star.png';
     }
     // change localStorage
     localStorage.taskList=JSON.stringify(taskList);
+}
+
+function addToday(taskNode){
+    // get task's title
+    id = taskNode.id;
+
+    // get statement
+    today = taskList[taskList.findIndex(item=>item['id']==id)]['today']
+    if(today==false){
+        taskList[taskList.findIndex(item=>item['id']==id)]['today']=true;
+        taskNode.childNodes[5].src='img/suned.png';
+    }else{
+        taskList[taskList.findIndex(item=>item['id']==id)]['today']=false;
+        taskNode.childNodes[5].src='img/sun.png';
+    }
+    // change localStorage
+    localStorage.taskList=JSON.stringify(taskList);
+}
+
+var starState=0;
+function filtImportant(img){
+    listDiv=document.getElementById('unfinishedTaskListDiv');
+    listDiv.innerHTML="";
+    // change icon
+    if(starState==0){
+        starState=1;
+        img.src="img/stared.png";
+        filt();
+    }else{
+        starState=0;
+        img.src="img/star.png";
+        filt();
+    }
+    
+    
+}
+
+var todayState=0;
+function filtToday(img){
+    listDiv=document.getElementById('unfinishedTaskListDiv');
+    listDiv.innerHTML="";
+    // change icon
+    if(todayState==0){
+        todayState=1;
+        img.src="img/suned.png";
+        filt();
+    }else{
+        todayState=0;
+        img.src="img/sun.png";
+        filt();
+    }
+    
+    
+}
+
+function filt(){
+    flag=0;
+    if(todayState==1){
+        if(starState==1){
+            flag = 1;
+        }else{
+            flag = 2;
+        }
+    }else{
+        if(starState==1){
+            flag = 3;
+        }else{
+            flag = 4;
+        }
+    }
+    taskList = JSON.parse(localStorage.getItem('taskList'));
+    listDiv=document.getElementById('unfinishedTaskListDiv');
+    for(i=1;i<taskList.length;i++){
+        task = taskList[i];
+        if(match(task,flag)&&task["isFinished"]==false){
+            star = 'star';
+            today = 'sun';
+            if(task['star']==true){
+                star = 'stared';
+            }
+            if(task['today']==true){
+                today = 'suned';
+            }
+            listDiv.innerHTML+="<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
+            "            <input type=\"checkbox\" class=\"check\" onchange=\"changeTaskStatement(this.parentNode)\">\n" +
+            "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
+            "                <label class=\"checkTitle\">" + task['title'] + "</label><br/>\n" +
+            "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
+            "            </div>\n" +
+            "            <img src=\"img/"+today+".png\" class=\"sun\" height=\"30\" width=\"30\" onclick=\"addToday(this.parentNode)\"/>"+
+            "            <img src=\"img/"+star+".png\" class=\"star\" height=\"30\" width=\"30\" onclick=\"addImportant(this.parentNode)\"/>"+
+            "        </div>";
+        }
+    }
+}
+
+function match(task,flag){
+    switch(flag){
+        case 1:
+            if(task['today']==true&&task['star']==true){
+                return true;
+            }else{
+                return false;
+            }
+        case 2:
+            if(task['today']==true){
+                return true;
+            }else{
+                return false;
+            }
+        case 3:
+            if(task['star']==true){
+                return true;
+            }else{
+                return false;
+            }
+        case 4:
+            return true;
+    }
 }

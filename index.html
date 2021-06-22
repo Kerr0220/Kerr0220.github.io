@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-    <title>Document</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>Kerr's Todo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,21 +18,32 @@
     </div> -->
     <h1 id="title">Kerr's Todo List</h1>
 
+    <div class="filterDiv">
+        <div class="filtBtn">
+            <img id="filtImg1" src="img/sun.png" height="30" width="30" onclick="filtToday(this)"/>
+            <label class="filtTitle">Today's Tasks</label>
+        </div>
+        <div class="filtBtn">
+            <img id="filtImg2" src="img/star.png" height="30" width="30" onclick="filtImportant(this)"/>
+            <label class="filtTitle">Important Tasks</label>
+        </div>
+    </div>
     <!--    task list-->
     <div class="taskListDiv" id="unfinishedTaskListDiv">
         <div id="notice">
             <p>Congratulation! Here's no task!</p>
             <p>What about add some?</p>
         </div>
-       <div class="taskDiv">
+       <!-- <div class="taskDiv">
             <input type="checkbox" class="check" onchange="changeTaskStatement(this.parentNode)">
             <div class="taskTextDiv" onclick="openTask(this)">
                 <label class="checkTitle" >task1</label><br/>
                 <label class="checkDdl">ddl: June 26</label>
                 
             </div>
+            <img src="img/sun.png" class="sun" height="30" width="30" onclick="addToday(this.parentNode)"/>
             <img src="img/star.png" class="star" height="30" width="30" onclick="addImportant(this.parentNode)"/>
-        </div>
+        </div> -->
     </div>
 
     <!--    the button to show/hide completed tasks-->
