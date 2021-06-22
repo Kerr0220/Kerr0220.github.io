@@ -3,15 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <title>Document</title>
-    <script src="script/index.js"></script>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="left"></div>
-    <div id="main"><h1 id="title">Kerr's Todo List</h1></div>
-    <div id="right"></div>
+<div id="main">
+    <!--    head buttons and myTodo list's title-->
+    <!-- <div class="pageHead">
+        <a href="folder.html"><img src="img/arrow.png" id="folderBtn" height="30" width="30"/></a>
+        <a href="editor.html"><img src="img/more.png" id="moreBtn" height="18" width="20"/></a>
+        
+    </div> -->
+    <h1 id="title">Kerr's Todo List</h1>
 
+    <!--    task list-->
+    <div class="taskListDiv" id="unfinishedTaskListDiv">
+        <div id="notice">
+            <p>Congratulation! Here's no task!</p>
+            <p>What about add some?</p>
+        </div>
+       <div class="taskDiv">
+            <input type="checkbox" class="check" onchange="changeTaskStatement(this.parentNode)">
+            <div class="taskTextDiv" onclick="openTask(this)">
+                <label class="checkTitle" >task1</label><br/>
+                <label class="checkDdl">ddl: June 26</label>
+                
+            </div>
+            <img src="img/star.png" class="star" height="30" width="30" onclick="addImportant(this.parentNode)"/>
+        </div>
+    </div>
+
+    <!--    the button to show/hide completed tasks-->
+    <div id="completeBtn">
+        <input id="cplBtn" type="button" value="Completed" onclick="showOrHideCompleted()">
+        <label for="cplBtn">Completed</label>
+    </div>
+
+    <!--    finish task list-->
+    <div class="taskListDiv" id="finishedListDiv">
+        <!--    wait to be added from task list-->
+    </div>
+
+    <div class="inputNewTaskDiv" id="iptNewTaskDiv">
+        <input type="checkbox" disabled="disabled" id="newTaskCheck">
+        <input type="text" id="newTaskTitle" placeholder="Add a task">
+        <input type="date" id="newTaskDate" value="2021-06-26">
+        <label id="inputBtn" onclick="addTask(this.parentNode)">ADD</label>
+    </div>
+</div>
+<script src="js/index.js"></script>
 </body>
 </html>

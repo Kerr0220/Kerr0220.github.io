@@ -1,0 +1,157 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url(../img/bgImg1.jpeg);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+#title{
+    color: #fff;
+}
+#main {
+    width: 100%;
+}
+
+#moreBtn{
+    position: absolute;
+    right: 10px;
+    left: auto;
+}
+
+ul{
+    list-style: none;
+}
+
+.pageHead{
+    margin-top: 10px;
+}
+
+.taskListDiv{
+    margin-bottom: 20px;
+}
+
+.taskListDiv p{
+    color: #ffffff;
+}
+
+.taskDiv{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.taskDiv:hover{
+    background-color: #d3d3d3;
+}
+
+.star{
+    align-self: center;
+    margin-right: 10px;
+}
+
+.taskTextDiv{
+    width: 100%;
+    height: 50px;
+    vertical-align: center;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.check{
+    margin-top: 28px;
+    vertical-align: center;
+    margin-left: 10px;
+}
+
+.checkTitle{
+    height: 30px;
+    line-height: 30px;
+    vertical-align: center;
+    font-size: 23px;
+}
+
+.checkDdl{
+    height: 20px;
+    line-height: 20px;
+    vertical-align: center;
+    color: #9b9b9b;
+    margin-left: 10px;
+}
+#completeBtn{
+    height: 30px;
+    width: 200px;
+    display: flex;
+    align-items: flex-start;
+}
+
+#cplBtn{
+    display: none;
+}
+
+#completeBtn label{
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    height: 30px;
+    line-height: 30px;
+    vertical-align: center;
+    border-radius: 10px;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#finishedListDiv{
+    margin-bottom: 60px;
+}
+
+#iptNewTaskDiv{
+    width: 100%;
+    left: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+#newTaskTitle{
+    width: 250px;
+    height: 50px;
+    align-self: center;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 20px;
+}
+#inputBtn{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: center;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    width: 100px;
+}
+#inputBtn:active{
+    background-color: #5282cb;
+    color: #fff;
+}
+#newTaskCheck{
+    margin-top: 20px;
+}
+#newTaskDate{
+    margin-top: 15px;
+    margin-right: 10px;
+}
