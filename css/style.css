@@ -53,6 +53,11 @@ ul{
 .taskDiv:hover{
     background-color: #d3d3d3;
 }
+
+.checkIcon{
+    align-self: center;
+    margin-left: 0.625rem;
+}
 .filterDiv{
     display: flex;
     justify-content:space-evenly;
@@ -81,7 +86,7 @@ ul{
     height: 3.125rem;
     vertical-align: center;
     margin-top: 0.625rem;
-    margin-left: 1.25rem;
+    margin-left: 0.625rem;
 }
 
 .check{
@@ -130,6 +135,33 @@ ul{
 #finishedListDiv{
     margin-bottom: 3.75rem;
 }
+
+#deleteBtn{
+    height: 1.875rem;
+    width: 12.5rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+#delBtn{
+    display: none;
+}
+
+#deleteBtn label{
+    margin-top: 10px;
+    color: #fff;
+    background-color: rgba(129, 6, 6, 0.5);
+    height: 0.875rem;
+    line-height: 0.875rem;
+    vertical-align: center;
+    border-radius: 0.625rem;
+    justify-content: center;
+    margin-left: 0.3125rem;
+    margin-right: 0.3125rem;
+    font-size: 0.75rem;
+}
+
+
 
 #iptNewTaskDiv{
     width: 100%;

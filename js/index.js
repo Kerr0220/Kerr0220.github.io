@@ -16,26 +16,13 @@ if (typeof(Storage) == "undefined") {
     alert('Sorry, your browser don\'t support Web Storage!');
 }
 
-// clear list
-function clearList(listName){
-    localStorage.removeItem(listName+'List');
-}
-
-// check whether has create 3 static lists 
-    // normal -> normal tasks
-    // today -> today's tasks
-    // important -> important tasks
+// check whether has create static list
 if(localStorage.taskList==null){
-    console.log('normal blank');
     taskList=[new Task('','')];
     localStorage.setItem('taskList',JSON.stringify(taskList));
 }else{
     // load the storage
     taskList = JSON.parse(localStorage.getItem('taskList'));
-    console.log(taskList);
-    if(taskList.length>1){
-        noticeHide();
-    }
     for(i=1;i<taskList.length;i++){
         task = taskList[i];
         star = 'star';
@@ -49,7 +36,7 @@ if(localStorage.taskList==null){
         if(task['isFinished']==false){
             uncplTaskNum++;
             document.getElementById("unfinishedTaskListDiv").innerHTML += "<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
-            "            <input type=\"checkbox\" class=\"check\" onchange=\"changeTaskStatement(this.parentNode)\">\n" +
+            "            <img class=\"checkIcon\" src=\"img/todo.png\" onclick=\"changeTaskStatement(this.parentNode)\" height=\"30\" width=\"30\">"+
             "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
             "                <label class=\"checkTitle\">" + task['title'] + "</label><br/>\n" +
             "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
@@ -59,7 +46,7 @@ if(localStorage.taskList==null){
             "        </div>";
         }else{
             document.getElementById("finishedListDiv").innerHTML += "<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
-            "            <input type=\"checkbox\" checked = true class=\"check\" onchange=\"changeTaskStatement(this.parentNode)\">\n" +
+            "            <img class=\"checkIcon\" src=\"img/finished.png\" onclick=\"changeTaskStatement(this.parentNode)\" height=\"30\" width=\"30\">"+
             "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
             "                <label class=\"checkTitle\" style=\"text-decoration: line-through; color: #9d9d9d\">" + task['title'] + "</label><br/>\n" +
             "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
@@ -72,6 +59,10 @@ if(localStorage.taskList==null){
     }
 }
 
+if(localStorage.all==null){
+    localStorage.setItem("all",JSON.stringify(0));
+}
+
 
 function openTask(taskDiv) {
     localStorage.setItem("currentTaskID",JSON.stringify(taskDiv.parentNode.id));
@@ -79,9 +70,13 @@ function openTask(taskDiv) {
 }
 
 function changeTaskStatement(taskDiv) {
-    state = taskDiv.firstElementChild.checked;
+    icon = taskDiv.firstElementChild;
+    
     taskTitle = taskDiv.childNodes[3].childNodes[1];
-    if (state == true) {
+    id = taskDiv.id;
+    task = taskList[taskList.findIndex(item=>item['id']==id)];
+    if (task['isFinished'] == false) {
+        icon.src = 'img/finished.png';
         taskTitle.style.textDecoration = "line-through";
         uncplTaskNum--;
         cplTaskNum++;
@@ -90,19 +85,14 @@ function changeTaskStatement(taskDiv) {
         
         // change storage
         taskList[taskList.findIndex(item=>item.id==taskDiv.id)]['isFinished']=true;
-        if (uncplTaskNum == 0) {
-            noticeShow();
-        }
     } else {
+        icon.src = 'img/todo.png';
         uncplTaskNum++;
         cplTaskNum--;
         taskTitle.style.textDecoration = "none";
         taskTitle.style.color = "#000000";
         document.getElementById("unfinishedTaskListDiv").append(taskDiv);
         taskList[taskList.findIndex(item=>item.title==taskTitle.textContent)]['isFinished']=false;
-        if (uncplTaskNum != 0) {
-            noticeHide();
-        }
     }
     localStorage.taskList=JSON.stringify(taskList);
 }
@@ -112,11 +102,27 @@ var completedList = 0;
 function showOrHideCompleted() {
     if (0 == completedList) {
         completedList = 1;
+        document.getElementById("deleteBtn").style.display="none";
         document.getElementById("finishedListDiv").style.display = "none";
     } else {
         completedList = 0;
+        document.getElementById("deleteBtn").style.display="";
         document.getElementById("finishedListDiv").style.display = "";
     }
+}
+
+function deleteAllFinishedTask(){
+    taskList=JSON.parse(localStorage.getItem("taskList"));
+    for(var i=1 ; i<taskList.length;){
+        task = taskList[i];
+        if(task["isFinished"]==true){
+            taskList.splice(i,1);
+        }else{
+            i++;
+        }
+    }
+    localStorage.setItem("taskList",JSON.stringify(taskList));
+    location.reload();
 }
 
 function addTask(newTaskDiv) {
@@ -136,13 +142,10 @@ function addTask(newTaskDiv) {
     task = new Task(title,date);
     taskList.push(task);
     localStorage.setItem('taskList',JSON.stringify(taskList));
-    // remove the 'No Task' notice
-    uncplTaskNum++;
-    noticeHide();
 
     // add new element to the list
     document.getElementById("unfinishedTaskListDiv").innerHTML += "<div id=\""+task.id+"\" class=\"taskDiv\">\n" +
-        "            <input type=\"checkbox\" class=\"check\" onchange=\"changeTaskStatement(this.parentNode)\">\n" +
+        "            <img class=\"checkIcon\" src=\"img/todo.png\" onclick=\"changeTaskStatement(this.parentNode)\" height=\"30\" width=\"30\">"+
         "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
         "                <label class=\"checkTitle\">" + title + "</label><br/>\n" +
         "                <label class=\"checkDdl\">ddl: " + date + "</label>\n" +
@@ -155,17 +158,6 @@ function addTask(newTaskDiv) {
     newTaskDiv.childNodes[3].value = "";
 }
 
-function noticeHide() {
-    p = document.getElementById("notice").childNodes;
-    p[1].style.display="none";
-    p[3].style.display="none";
-}
-
-function noticeShow() {
-    p = document.getElementById("notice").childNodes;
-    p[1].style.display="";
-    p[3].style.display="";
-}
 
 function addImportant(taskNode){
     // get task's title
@@ -266,7 +258,7 @@ function filt(){
                 today = 'suned';
             }
             listDiv.innerHTML+="<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
-            "            <input type=\"checkbox\" class=\"check\" onchange=\"changeTaskStatement(this.parentNode)\">\n" +
+            "            <img class=\"checkIcon\" src=\"img/todo.png\" onclick=\"changeTaskStatement(this.parentNode)\" height=\"30\" width=\"30\">"+
             "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
             "                <label class=\"checkTitle\">" + task['title'] + "</label><br/>\n" +
             "                <label class=\"checkDdl\">ddl: " + task['date'] + "</label>\n" +
@@ -301,4 +293,25 @@ function match(task,flag){
         case 4:
             return true;
     }
+}
+
+function changeAll(img){
+    allFinished = localStorage.getItem("all");
+    taskList = JSON.parse(localStorage.getItem('taskList'));
+    if(allFinished==0){
+        img.src="img/finished.png";
+        for(i=1;i<taskList.length;i++){
+            taskList[i]['isFinished']=true;
+        }
+        localStorage.setItem("all",JSON.stringify(1));
+    }else{
+        allFinished=0;
+        img.src="img/todo.png";
+        for(i=1;i<taskList.length;i++){
+            taskList[i]['isFinished']=false;
+        }
+        localStorage.setItem("all",JSON.stringify(0));
+    }
+    localStorage.setItem("taskList",JSON.stringify(taskList));
+    location.reload();
 }

@@ -20,22 +20,22 @@
 
     <div class="filterDiv">
         <div class="filtBtn">
+            <img id="filtImg0" src="img/todo.png" height="30" width="30" onclick="changeAll(this)"/>
+            <label class="filtTitle">All-finish</label>
+        </div>
+        <div class="filtBtn">
             <img id="filtImg1" src="img/sun.png" height="30" width="30" onclick="filtToday(this)"/>
-            <label class="filtTitle">Today's Tasks</label>
+            <label class="filtTitle">Today</label>
         </div>
         <div class="filtBtn">
             <img id="filtImg2" src="img/star.png" height="30" width="30" onclick="filtImportant(this)"/>
-            <label class="filtTitle">Important Tasks</label>
+            <label class="filtTitle">Important</label>
         </div>
     </div>
     <!--    task list-->
     <div class="taskListDiv" id="unfinishedTaskListDiv">
-        <div id="notice">
-            <p>Congratulation! Here's no task!</p>
-            <p>What about add some?</p>
-        </div>
        <!-- <div class="taskDiv">
-            <input type="checkbox" class="check" onchange="changeTaskStatement(this.parentNode)">
+           <img class="checkIcon" src="img/todo.png" onclick="changeTaskStatement(this.parentNode)" height="30" width="30">
             <div class="taskTextDiv" onclick="openTask(this)">
                 <label class="checkTitle" >task1</label><br/>
                 <label class="checkDdl">ddl: June 26</label>
@@ -47,10 +47,17 @@
     </div>
 
     <!--    the button to show/hide completed tasks-->
-    <div id="completeBtn">
-        <input id="cplBtn" type="button" value="Completed" onclick="showOrHideCompleted()">
-        <label for="cplBtn">Completed</label>
+    <div class="footBtn">
+        <div id="completeBtn">
+            <input id="cplBtn" type="button" value="Completed" onclick="showOrHideCompleted()">
+            <label for="cplBtn">Completed</label>
+        </div>
+        <div id="deleteBtn">
+            <input id="delBtn" type="button" value="Completed" onclick="deleteAllFinishedTask()">
+            <label for="delBtn">Delete all finished tasks</label>
+        </div>
     </div>
+    
 
     <!--    finish task list-->
     <div class="taskListDiv" id="finishedListDiv">
