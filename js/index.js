@@ -15,6 +15,9 @@ var cplTaskNum = 0;
 if (typeof(Storage) == "undefined") {
     alert('Sorry, your browser don\'t support Web Storage!');
 }
+// rand a background
+bg = Math.ceil(Math.random()*7);
+document.body.style.backgroundImage="url(../img/bgImg"+bg+".jpg)";
 
 // check whether has create static list
 if(localStorage.taskList==null){
@@ -97,6 +100,7 @@ function changeTaskStatement(taskDiv) {
     localStorage.taskList=JSON.stringify(taskList);
 }
 
+// whether completedList is folded
 var completedList = 0;
 
 function showOrHideCompleted() {
@@ -104,8 +108,10 @@ function showOrHideCompleted() {
         completedList = 1;
         document.getElementById("deleteBtn").style.display="none";
         document.getElementById("finishedListDiv").style.display = "none";
+        document.getElementById("completeBtn").style.marginBottom = "3rem";
     } else {
         completedList = 0;
+        document.getElementById("completeBtn").style.marginBottom = "0rem";
         document.getElementById("deleteBtn").style.display="";
         document.getElementById("finishedListDiv").style.display = "";
     }

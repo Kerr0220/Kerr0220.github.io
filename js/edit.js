@@ -1,6 +1,9 @@
 taskID = parseInt(JSON.parse(localStorage.getItem("currentTaskID")));
 taskList = JSON.parse(localStorage.taskList);
 task = taskList[taskList.findIndex(item=>item['id']==taskID)];
+// rand a background
+bg = Math.ceil(Math.random()*7);
+document.body.style.backgroundImage="url(../img/bgImg"+bg+".jpg)";
 
 document.getElementById("titleInput").textContent=task['title'];
 document.getElementById("dateInput").value=task['date'];
