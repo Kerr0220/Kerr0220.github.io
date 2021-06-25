@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskDetail</title>
+    <link rel="stylesheet" href="css/edit.css">
+</head>
+<body>
+<div class="headDiv">
+    <img class="returnBtn" src="img/arrow.png" height="80" width="80" onclick="returnIndexPage()"/>
+</div>
+
+<div class="taskDiv">
+    <textarea id="titleInput" ></textarea>
+    <input type="date" id="dateInput">
+    <textarea id="contentInput" placeholder="You can add some details of this task."></textarea>
+</div>
+
+<div class="btnDiv" id="saveDiv">
+    <img class="saveBtn" src="img/save.png" height="80" width="80" onclick="saveTask()"/>
+</div>
+<div class="btnDiv">
+    <img class="deleteBtn" src="img/delete.png" height="80" width="80" onclick="deleteTask()"/>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>

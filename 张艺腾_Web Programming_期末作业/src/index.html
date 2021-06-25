@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>Kerr's Todo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="main">
+    <!--    head buttons and myTodo list's title-->
+    <!-- <div class="pageHead">
+        <a href="folder.html"><img src="img/arrow.png" id="folderBtn" height="30" width="30"/></a>
+        <a href="editor.html"><img src="img/more.png" id="moreBtn" height="18" width="20"/></a>
+        
+    </div> -->
+    <select id="bgSelect" onchange="changeBg(this.value)">
+        <option value="1">pic1</option>
+        <option value="2" selected  =  "selected">pic2</option>
+        <option value="3">pic3</option>
+        <option value="4">pic4</option>
+        <option value="5">pic5</option>
+        <option value="6">pic6</option>
+        <option value="7">pic7</option>
+    </select>
+    <h1 id="title">Kerr's Todo List</h1>
+
+    <div class="filterDiv">
+        <div class="filtBtn">
+            <img id="filtImg0" src="img/todo.png" height="30" width="30" onclick="changeAll(this)"/>
+            <label class="filtTitle">All-finish</label>
+        </div>
+        <div class="filtBtn">
+            <img id="filtImg1" src="img/sun.png" height="30" width="30" onclick="filtToday(this)"/>
+            <label class="filtTitle">Today</label>
+        </div>
+        <div class="filtBtn">
+            <img id="filtImg2" src="img/star.png" height="30" width="30" onclick="filtImportant(this)"/>
+            <label class="filtTitle">Important</label>
+        </div>
+    </div>
+    <!--    task list-->
+    <div class="taskListDiv" id="unfinishedTaskListDiv">
+       <!-- <div class="taskDiv">
+           <img class="checkIcon" src="img/todo.png" onclick="changeTaskStatement(this.parentNode)" height="30" width="30">
+            <div class="taskTextDiv" onclick="openTask(this)">
+                <label class="checkTitle" >task1</label><br/>
+                <label class="checkDdl">ddl: June 26</label>
+                
+            </div>
+            <img src="img/sun.png" class="sun" height="30" width="30" onclick="addToday(this.parentNode)"/>
+            <img src="img/star.png" class="star" height="30" width="30" onclick="addImportant(this.parentNode)"/>
+        </div> -->
+    </div>
+
+    <!--    the button to show/hide completed tasks-->
+    <div class="footBtn">
+        <div id="completeBtn">
+            <input id="cplBtn" type="button" value="Completed" onclick="showOrHideCompleted()">
+            <label for="cplBtn">Completed</label>
+        </div>
+        <div id="deleteBtn">
+            <input id="delBtn" type="button" value="Completed" onclick="deleteAllFinishedTask()">
+            <label for="delBtn">Delete all finished tasks</label>
+        </div>
+    </div>
+    
+
+    <!--    finish task list-->
+    <div class="taskListDiv" id="finishedListDiv">
+        <!--    wait to be added from task list-->
+    </div>
+
+    <div class="inputNewTaskDiv" id="iptNewTaskDiv">
+        <img class="checkIcon" src="img/todo.png" height="30" width="30">
+        <input type="text" id="newTaskTitle" placeholder="Add a task">
+        <input type="date" id="newTaskDate" value="2021-06-26">
+        <label id="inputBtn" onclick="addTask(this.parentNode)">ADD</label>
+    </div>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>

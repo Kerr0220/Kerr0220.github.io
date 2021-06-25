@@ -1,0 +1,214 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url(../img/bgImg3.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+html{
+	font-size:20px;
+}
+#title{
+    color: #fff;
+}
+#main {
+    width: 100%;
+}
+
+#moreBtn{
+    position: absolute;
+    right: 0.625rem;
+    left: auto;
+}
+
+ul{
+    list-style: none;
+}
+
+#bgSelect{
+    float: right;
+    outline: none;
+}
+
+.pageHead{
+    margin-top: 0.625rem;
+}
+
+.taskListDiv{
+    margin-bottom: 1.25rem;
+}
+
+.taskListDiv p{
+    color: #ffffff;
+}
+
+.taskDiv{
+    width: 100%;
+    height: 4.375rem;
+    background-color: #fff;
+    border-radius: 0.625rem;
+    margin-top: 0.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.taskDiv:hover{
+    background-color: #d3d3d3;
+}
+
+.checkIcon{
+    align-self: center;
+    margin-left: 0.625rem;
+}
+.filterDiv{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: flex-start;
+}
+.filterBtn{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.filtTitle{
+    color: #ffffff;
+}
+.star{
+    align-self: center;
+    margin-right: 0.625rem;
+}
+
+.sun{
+    align-self: center;
+    margin-right: 0.625rem;
+}
+
+.taskTextDiv{
+    width: 100%;
+    height: 3.125rem;
+    vertical-align: center;
+    margin-top: 0.625rem;
+    margin-left: 0.625rem;
+}
+
+.check{
+    margin-top: 1.75rem;
+    vertical-align: center;
+    margin-left: 0.625rem;
+}
+
+.checkTitle{
+    height: 1.875rem;
+    line-height: 1.875rem;
+    vertical-align: center;
+    font-size: 1.2rem;
+}
+
+.checkDdl{
+    height: 1.25rem;
+    line-height: 1.25rem;
+    vertical-align: center;
+    color: #9b9b9b;
+    margin-left: 0.625rem;
+}
+#completeBtn{
+    height: 1.875rem;
+    width: 12.5rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+#cplBtn{
+    display: none;
+}
+
+#completeBtn label{
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    height: 1.875rem;
+    line-height: 1.875rem;
+    vertical-align: center;
+    border-radius: 0.625rem;
+    justify-content: center;
+    margin-left: 0.3125rem;
+    margin-right: 0.3125rem;
+}
+
+#finishedListDiv{
+    margin-bottom: 3.75rem;
+}
+
+#deleteBtn{
+    height: 1.875rem;
+    width: 12.5rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+#delBtn{
+    display: none;
+}
+
+#deleteBtn label{
+    margin-top: 10px;
+    color: #fff;
+    background-color: rgba(129, 6, 6, 0.5);
+    height: 0.875rem;
+    line-height: 0.875rem;
+    vertical-align: center;
+    border-radius: 0.625rem;
+    justify-content: center;
+    margin-left: 0.3125rem;
+    margin-right: 0.3125rem;
+    font-size: 0.75rem;
+}
+
+
+
+#iptNewTaskDiv{
+    width: 100%;
+    left: 0rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: fixed;
+    bottom: 0rem;
+    background-color: #fff;
+    border-radius: 1.25rem;
+}
+#newTaskTitle{
+    width: 9.375rem;
+    height: 3.125rem;
+    align-self: center;
+    border-radius: 0.625rem;
+    border: none;
+    outline: none;
+    margin-left: 0.625rem;
+    font-size: 1.25rem;
+}
+#inputBtn{
+    margin-top: 0.625rem;
+    margin-right: 0.625rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    vertical-align: center;
+    background-color: cornflowerblue;
+    border-radius: 1.25rem;
+    text-align: center;
+    color: #fff;
+    width: 6.25rem;
+}
+#inputBtn:active{
+    background-color: #5282cb;
+    color: #fff;
+}
+#newTaskCheck{
+    margin-top: 1.25rem;
+}
+#newTaskDate{
+    margin-top: 0.9375rem;
+    margin-right: 0.625rem;
+}
