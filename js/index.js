@@ -1,3 +1,4 @@
+// the class of task
 class Task {
     constructor(title, date) {
         this.title = title;
@@ -9,15 +10,20 @@ class Task {
         this.id=Date.parse( new Date());
     }
 }
-var uncplTaskNum = 0;
-var cplTaskNum = 0;
 // check whether this broswer supports Web Storage
 if (typeof(Storage) == "undefined") {
     alert('Sorry, your browser don\'t support Web Storage!');
 }
-// rand a background
-bg = Math.ceil(Math.random()*7);
-document.body.style.backgroundImage="url(../img/bgImg"+bg+".jpg)";
+
+// check whether has create a local virable to store the choice of bgImg
+if(localStorage.bg==null){
+    localStorage.setItem("bg",JSON.stringify(2));
+}else{
+    // load the choice
+    bg=JSON.parse(localStorage.getItem("bg"));
+    document.getElementById("bgSelect").value=bg;
+    document.body.style.backgroundImage="url(../img/bgImg"+bg+".jpg)";
+}
 
 // check whether has create static list
 if(localStorage.taskList==null){
@@ -37,7 +43,6 @@ if(localStorage.taskList==null){
             today = 'suned';
         }
         if(task['isFinished']==false){
-            uncplTaskNum++;
             document.getElementById("unfinishedTaskListDiv").innerHTML += "<div id=\""+task['id']+"\" class=\"taskDiv\">\n" +
             "            <img class=\"checkIcon\" src=\"img/todo.png\" onclick=\"changeTaskStatement(this.parentNode)\" height=\"30\" width=\"30\">"+
             "            <div class=\"taskTextDiv\" onclick=\"openTask(this)\">\n" +
@@ -66,12 +71,13 @@ if(localStorage.all==null){
     localStorage.setItem("all",JSON.stringify(0));
 }
 
-
+// open this task to view and modify the details of this task
 function openTask(taskDiv) {
     localStorage.setItem("currentTaskID",JSON.stringify(taskDiv.parentNode.id));
     window.location.href = "editor.html";
 }
 
+// change this task's statement: finished -> unfinished / unfinished -> finished
 function changeTaskStatement(taskDiv) {
     icon = taskDiv.firstElementChild;
     
@@ -81,8 +87,6 @@ function changeTaskStatement(taskDiv) {
     if (task['isFinished'] == false) {
         icon.src = 'img/finished.png';
         taskTitle.style.textDecoration = "line-through";
-        uncplTaskNum--;
-        cplTaskNum++;
         taskTitle.style.color = "#9d9d9d";
         document.getElementById("finishedListDiv").append(taskDiv);
         
@@ -90,8 +94,6 @@ function changeTaskStatement(taskDiv) {
         taskList[taskList.findIndex(item=>item.id==taskDiv.id)]['isFinished']=true;
     } else {
         icon.src = 'img/todo.png';
-        uncplTaskNum++;
-        cplTaskNum--;
         taskTitle.style.textDecoration = "none";
         taskTitle.style.color = "#000000";
         document.getElementById("unfinishedTaskListDiv").append(taskDiv);
@@ -103,6 +105,7 @@ function changeTaskStatement(taskDiv) {
 // whether completedList is folded
 var completedList = 0;
 
+// show/hide completed tasks
 function showOrHideCompleted() {
     if (0 == completedList) {
         completedList = 1;
@@ -117,6 +120,7 @@ function showOrHideCompleted() {
     }
 }
 
+// delete all finished tasks
 function deleteAllFinishedTask(){
     taskList=JSON.parse(localStorage.getItem("taskList"));
     for(var i=1 ; i<taskList.length;){
@@ -131,6 +135,7 @@ function deleteAllFinishedTask(){
     location.reload();
 }
 
+// add new task
 function addTask(newTaskDiv) {
     // get title
     title = newTaskDiv.childNodes[3].value;
@@ -164,7 +169,7 @@ function addTask(newTaskDiv) {
     newTaskDiv.childNodes[3].value = "";
 }
 
-
+// add this task to importantList
 function addImportant(taskNode){
     // get task's title
     id = taskNode.id;
@@ -182,6 +187,7 @@ function addImportant(taskNode){
     localStorage.taskList=JSON.stringify(taskList);
 }
 
+// add this task to todayList
 function addToday(taskNode){
     // get task's title
     id = taskNode.id;
@@ -199,6 +205,7 @@ function addToday(taskNode){
     localStorage.taskList=JSON.stringify(taskList);
 }
 
+// filt important tasks
 var starState=0;
 function filtImportant(img){
     listDiv=document.getElementById('unfinishedTaskListDiv');
@@ -217,6 +224,7 @@ function filtImportant(img){
     
 }
 
+// filt today's tasks
 var todayState=0;
 function filtToday(img){
     listDiv=document.getElementById('unfinishedTaskListDiv');
@@ -235,6 +243,7 @@ function filtToday(img){
     
 }
 
+// filt tasks
 function filt(){
     flag=0;
     if(todayState==1){
@@ -276,6 +285,7 @@ function filt(){
     }
 }
 
+// judge whether this task can be shown
 function match(task,flag){
     switch(flag){
         case 1:
@@ -301,6 +311,8 @@ function match(task,flag){
     }
 }
 
+// change all tasks' statement
+// finish all / undo all
 function changeAll(img){
     allFinished = localStorage.getItem("all");
     taskList = JSON.parse(localStorage.getItem('taskList'));
@@ -320,4 +332,11 @@ function changeAll(img){
     }
     localStorage.setItem("taskList",JSON.stringify(taskList));
     location.reload();
+}
+
+// change background picture
+function changeBg(bg){
+    console.log(bg);
+    document.body.style.backgroundImage="url(../img/bgImg"+bg+".jpg)";
+    localStorage.setItem("bg",JSON.stringify(bg));
 }

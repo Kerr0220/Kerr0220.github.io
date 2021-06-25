@@ -27,6 +27,11 @@ ul{
     list-style: none;
 }
 
+#bgSelect{
+    float: right;
+    outline: none;
+}
+
 .pageHead{
     margin-top: 0.625rem;
 }
